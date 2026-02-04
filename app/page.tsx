@@ -1,8 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useSearchParams } from "next/navigation";
 
-export default function Home() {
+export default function Home({ params }: { params: { username: string } }) {
+    const searchParams = useSearchParams();
+    const username = searchParams.get("q");
     const [noCount, setNoCount] = useState(0)
     const [yesPressed, setYesPressed] = useState(false)
     const [noButtonPosition, setNoButtonPosition] = useState({ x: 0, y: 0 })
@@ -244,7 +247,7 @@ export default function Home() {
                                     backgroundClip: 'text',
                                     textShadow: '0 10px 30px rgba(236, 72, 153, 0.3)',
                                 }}>
-                                Will You Be My
+                                {username} Will You Be My
                                 <br />
                                 Valentine? 💝
                             </h1>
